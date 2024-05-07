@@ -1,6 +1,7 @@
 use std::io;
 use rand::Rng;
 use std::cmp::Ordering;
+use colored::Colorize;
 fn main() {
     println!("Welcome to guess game");
     let secret_number = rand::thread_rng().gen_range(1..=100);
@@ -20,9 +21,9 @@ fn main() {
         let guess: u32= guess.trim().parse().expect("Error in parsing to int"); 
         match guess.cmp(&secret_number) {
             Ordering::Equal => break,
-            Ordering::Greater => println!("The number you entered in greated than the secret number"),
-            Ordering::Less => println!("The number you entered in lesser than the secret number"),
+            Ordering::Greater => println!("{}","The number you entered in greated than the secret number".red()),
+            Ordering::Less => println!("{}","The number you entered in lesser than the secret number".red()),
         }
     }
-    println!("YOu have won");
+    println!("{}","YOu have won".green());
 }
